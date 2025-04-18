@@ -1,0 +1,33 @@
+{
+    "TabLabel": "错误",
+    "InitTabSize": [400, 200],
+    "InitTabPosition": [50, 200],
+    "InitPyCmd": "",
+    "IsModalWindow": true,
+    "Root":
+    {
+        "SBorder": {
+            "BorderImage": {
+                "Style": "FEditorStyle",
+                "Brush": "ToolPanel.DarkGroupBorder"
+            },
+            "Content":{
+                "SVerticalBox":
+                {
+                    "Slots": [
+                        {
+                            "VAlign": "Center",
+                            "HAlign": "Center",
+                            "AutoHeight": true,
+                            "Padding": [0 ,50 ,0 ,0 ],
+                            "SRichTextBlock":
+                            {
+                                "Text": "<Credits.H4>请先选择一张图片或输入提示词</>"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

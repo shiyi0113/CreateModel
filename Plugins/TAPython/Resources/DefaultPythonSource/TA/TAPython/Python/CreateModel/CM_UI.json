@@ -1,0 +1,363 @@
+{
+    "TabLabel": "生成模型",
+    "InitTabSize": [1100, 1080],
+    "InitPyCmd": "import CreateModel; cm = CreateModel.CreateModel.CreateModel(%JsonPath)",
+    "Root": {
+        "SOverlay": {
+            "Slots": [
+                {
+					"SVerticalBox": {
+						"Aka": "main_overlay",
+						"Visibility": "Visible",
+						"Slots": [
+                            {
+                                "AutoHeight": true,
+                                "SBox": {
+                                    "MinDesiredWidth": 500,
+                                    "MinDesiredHeight": 100,
+                                    "Padding": [500, 100, 0, 30],
+                                    "Content": {
+                                        "STextBlock": {
+                                            "Text": "模型生成",
+                                            "Justification": "Left",
+                                            "Font": {
+                                                "Style": "FEditorStyle",
+                                                "StyleName": "FontAwesome.20"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+							{
+                                "AutoHeight": true,
+                                "SHorizontalBox": {
+                                    "Slots": [
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 200,
+                                                "MinDesiredHeight": 25,
+                                                "Padding": [300, 0, 0, 0],
+                                                "Content": {
+													"STextBlock": {
+														"Text": "请选择生成模型的方式：",
+														"Justification": "Left",
+														"Font": {
+															"Style": "FEditorStyle",
+															"StyleName": "FontAwesome.14"
+														}
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 200,
+                                                "MinDesiredHeight": 0,
+                                                "Padding": [10, 0, 0, 0],
+                                                "Content": {
+													"SComboBox": {
+														"Aka": "CombBox",
+														"OptionsSource": [
+															"文生模型",
+															"图生模型"
+														],
+														"OnSelectionChanged": "cm.select_generate_mode(%)"
+													}
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+							},
+							{
+                                "AutoHeight": true,
+                                "SHorizontalBox": {
+									"Aka": "text_to_model",
+									"Visibility": "Collapsed",
+                                    "Slots": [
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 200,
+                                                "MinDesiredHeight": 50,
+                                                "Padding": [430, 0, 0, 0],
+												"VAlign": "Center",
+                                                "Content": {
+													"STextBlock": {
+														"Text": "提示词：",
+														"Justification": "Left",
+														"Font": {
+															"Style": "FEditorStyle",
+															"StyleName": "FontAwesome.14"
+														}
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 500,
+                                                "MinDesiredHeight": 50,
+                                                "Padding": [10, 10, 0, 0],
+                                                "Content": {
+													"SEditableTextBox": {
+                                                        "Text": "",
+                                                        "Aka": "textbox",
+                                                        "HintText": "描述你需要创建什么样的模型......"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+							},
+							{
+                                "AutoHeight": true,
+                                "SHorizontalBox": {
+									"Aka": "image_to_model",
+									"Visibility": "Collapsed",	
+                                    "Slots": [
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 200,
+                                                "MinDesiredHeight": 50,
+                                                "Padding": [449, 0, 0, 0],
+												"VAlign": "Center",
+                                                "Content": {
+													"STextBlock": {
+														"Text": "图片：",
+														"Justification": "Left",
+														"Font": {
+															"Style": "FEditorStyle",
+															"StyleName": "FontAwesome.14"
+														}
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 150,
+                                                "MinDesiredHeight": 50,
+                                                "Padding": [10, 10, 0, 5],
+                                                "Content": {
+                                                    "SButton": {
+                                                        "Text": "选择图片",
+                                                        "ToolTipText": "上传你的图片。",
+                                                        "HAlign": "Center",
+                                                        "VAlign": "Center",
+                                                        "ContentPadding": 6,
+                                                        "OnClick": "cm.add_picture()"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "AutoHeight": true,
+                                "SBox": {
+                                    "MinDesiredHeight": 600,
+                                    "Padding": [200, 10, 200, 10],
+                                    "Content": {
+                                        "SImage": {
+                                            "Aka": "preview_image",
+                                            "ToolTipText": "图片预览",
+                                            "Visibility": "Collapsed"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "AutoHeight": true,
+                                "SBox": {
+                                    "MinDesiredHeight": 50,
+                                    "Padding": [450, 10, 450, 0],
+                                    "Content": {
+                                        "SButton": {
+                                            "Text": "生成模型",
+                                            "HAlign": "Center",
+                                            "VAlign": "Center",
+                                            "ContentPadding": 10,
+                                            "OnClick": "cm.create_model()"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+					"SVerticalBox": {
+						"Aka": "result_overlay",
+						"Visibility": "Collapsed",
+						"Slots": [
+                            {
+                                "AutoHeight": true,
+                                "SBox": {
+                                    "MinDesiredWidth": 500,
+                                    "MinDesiredHeight": 100,
+                                    "Padding": [480, 100, 0, 30],
+                                    "Content": {
+                                        "STextBlock": {
+                                            "Text": "模型生成完毕",
+                                            "Justification": "Left",
+                                            "Font": {
+                                                "Style": "FEditorStyle",
+                                                "StyleName": "FontAwesome.20"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+							{
+                                "AutoHeight": true,
+                                "SHorizontalBox": {
+                                    "Slots": [
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 540,
+                                                "MinDesiredHeight":800,
+                                                "Padding": [40, 150, 0, 150],
+                                                "Content": {
+													"SImage": {
+														"Aka": "original_image",
+														"ToolTipText": "原图",
+														"Visibility": "Visible"
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 540,
+                                                "MinDesiredHeight":800,
+                                                "Padding": [40, 25, 0, 25],
+                                                "Content": {
+													"SImage": {
+														"Aka": "perspective_image",
+														"ToolTipText": "视角图",
+														"Visibility": "Visible"
+													}
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+							},
+							{
+                                "AutoHeight": true,
+                                "SHorizontalBox": {
+                                    "Slots": [
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 360,
+                                                "MinDesiredHeight": 25,
+                                                "Padding": [200, 0, 100, 0],
+                                                "Content": {
+													"SButton": {
+														"Text": "模型演示",
+														"HAlign": "Center",
+														"VAlign": "Center",
+														"ContentPadding": 10,
+														"OnClick": "cm.show_gif()"
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 360,
+                                                "MinDesiredHeight": 25,
+                                                "Padding": [100, 0, 150, 0],
+                                                "Content": {
+													"SButton": {
+														"Text": "导入模型",
+														"HAlign": "Center",
+														"VAlign": "Center",
+														"ContentPadding": 10,
+														"OnClick": "cm.import_model()"
+													}
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "AutoWidth": true,
+                                            "SBox": {
+                                                "MinDesiredWidth": 360,
+                                                "MinDesiredHeight": 25,
+                                                "Padding": [50, 0, 200, 0],
+                                                "Content": {
+													"SButton": {
+														"Text": "返回首页",
+														"HAlign": "Center",
+														"VAlign": "Center",
+														"ContentPadding": 10,
+														"OnClick": "cm.back_to_homepage()"
+													}
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+							}
+                        ]
+                    }
+                },
+                {
+					"SBorder": {
+                        "Aka": "processing_overlay",
+                        "Visibility": "Collapsed",
+                        "Content": {
+                            "SVerticalBox": {
+                                "Slots": [
+                                    {
+                                        "AutoHeight": true,
+                                        "SBox": {
+                                            "MinDesiredHeight": 60,
+                                            "Padding": [20, 400, 20, 15],
+                                            "Content": {
+                                                "STextBlock": {
+                                                    "Text": "正在生成中，请稍候...",
+                                                    "Justification": "Center",
+                                                    "Font": {
+                                                        "Style": "FEditorStyle",
+                                                        "StyleName": "FontAwesome.20"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "AutoHeight": true,
+                                        "SBox": {
+                                            "MinDesiredHeight": 50,
+                                            "Padding": [0, 0, 0, 15],
+                                            "HAlign": "Center",
+                                            "Content": {
+                                                "SThrobber": {
+                                                    "NumPieces": 6,
+                                                    "Animate": "Horizontal"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+				}
+            ]
+        }
+    }
+}

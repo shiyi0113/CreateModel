@@ -1,0 +1,15 @@
+{
+    "OnToolBarChameleon": {
+        "name": "Python Chameleon on toolbar",
+        "items": [
+            {
+                "name": "生成模型",
+                "ChameleonTools": "../Python/CreateModel/CM_UI.json",
+                "icon": {
+                    "style": "ChameleonStyle",
+                    "name": "Lab"
+                }
+            }
+        ]
+    }
+}
